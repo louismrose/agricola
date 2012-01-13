@@ -1,12 +1,61 @@
-#  _
-# |2|  
-#  ‾
-#  w  s
-# w wsos
-#  w  s
-#  c
-# coc
-#  c
+module Colours
+  def on_black(text)
+    colourise(text, "\e[" + colour_codes[:on_black] + "m")
+  end
+
+  def on_red(text)
+    colourise(text, "\e[" + colour_codes[:on_red] + "m")
+  end
+
+  def on_green(text)
+    colourise(text, "\e[" + colour_codes[:on_green] + "m")
+  end
+
+  def on_white(text)
+    colourise(text, "\e[" + colour_codes[:on_white] + "m")
+  end
+
+  def black(text)
+    colourise(text, "\e[" + colour_codes[:black] + "m")
+  end
+
+  def red(text)
+    colourise(text, "\e[" + colour_codes[:red] + "m")
+  end
+
+  def green(text)
+    colourise(text, "\e[" + colour_codes[:green] + "m")
+  end
+
+  def yellow(text)
+    colourise(text, "\e[" + colour_codes[:yellow] + "m")
+  end
+
+  def white(text)
+    colourise(text, "\e[" + colour_codes[:white] + "m")
+  end
+
+  def colourise(text, colour_code)
+    "#{colour_code}#{text}\e[0m"
+  end
+    
+  def colour_codes
+    {
+      :black => '30',
+      :red   => '31',
+      :green => '32',
+      :yellow => '33',
+      :white  => '37',
+      :on_black => '40',
+      :on_red   => '41',
+      :on_green => '42',
+      :on_yellow => '43',
+      :on_white  => '47'
+    }
+  end
+end
+
+include Colours
 
 def empty
   [on_green("   "),
@@ -64,46 +113,6 @@ def boar(number)
   black(number)
 end
 
-def on_black(text)
-  colourise(text, "\e[40m")
-end
-
-def on_red(text)
-  colourise(text, "\e[41m")
-end
-
-def on_green(text)
-  colourise(text, "\e[42m")
-end
-
-def on_white(text)
-  colourise(text, "\e[47m")
-end
-
-def black(text)
-  colourise(text, "\e[30m")
-end
-
-def red(text)
-  colourise(text, "\e[31m")
-end
-
-def green(text)
-  colourise(text, "\e[32m")
-end
-
-def yellow(text)
-  colourise(text, "\e[33m")
-end
-
-def white(text)
-  colourise(text, "\e[37m")
-end
-
-def colourise(text, colour_code)
-  "#{colour_code}#{text}\e[0m"
-end
-
 def row(first, second)
   first.zip(second).map &:join
 end
@@ -112,4 +121,4 @@ def display(farm)
   farm.each {|row| puts row}
 end
 
-display row(ploughed, stone)
+display row(fenced, empty)
