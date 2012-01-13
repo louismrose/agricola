@@ -9,39 +9,39 @@
 #  c
 
 def empty
-  puts on_green("   ")
-  puts on_green("   ")
-  puts on_green("   ")
+  [on_green("   "),
+   on_green("   "),
+   on_green("   ")]
 end
 
 def wood
-  puts on_red("   ")
-  puts on_red(" ") + on_red(cattle(1)) + on_red(" ")
-  puts on_red("   ")
+  [on_red("   "),
+   on_red(" ") + on_red(cattle(1)) + on_red(" "),
+   on_red("   ")]
 end
 
 def clay
-  puts on_white("   ")
-  puts on_white(" 2 ")
-  puts on_white("   ")
+ [on_white("   "),
+  on_white(" 2 "),
+  on_white("   ")]
 end
 
 def stone
-  puts on_black("   ")
-  puts on_black(" 1 ")
-  puts on_black("   ")
+  [on_black("   "),
+   on_black(" 1 "),
+   on_black("   ")]
 end
 
 def fenced
-  puts on_green("---")
-  puts on_green("|") + on_green(boar(3)) + on_green("|")
-  puts on_green("---")
+  [on_green("---"),
+   on_green("|") + on_green(boar(3)) + on_green("|"),
+   on_green("---")]
 end
 
 def ploughed
-  puts on_red("~~~")
-  puts on_red("~") + on_red(grain(2)) + on_red("~")
-  puts on_red("~~~")
+  [on_red("~~~"),
+   on_red("~") + on_red(grain(2)) + on_red("~"),
+   on_red("~~~")]
 end
 
 def vegetable(number)
@@ -104,7 +104,12 @@ def colourise(text, colour_code)
   "#{colour_code}#{text}\e[0m"
 end
 
-wood
-clay
-stone
-empty
+def row(first, second)
+  first.zip(second).map &:join
+end
+
+def display(farm)
+  farm.each {|row| puts row}
+end
+
+display row(ploughed, stone)
