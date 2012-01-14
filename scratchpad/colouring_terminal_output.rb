@@ -34,9 +34,13 @@ module Colours
   def white(text)
     colourise(text, "\e[" + colour_codes[:white] + "m")
   end
+  
+  def escape_to_default_colours
+    "\e[0m"
+  end
 
   def colourise(text, colour_code)
-    "#{colour_code}#{text}\e[0m"
+    "#{colour_code}#{text}"
   end
     
   def colour_codes
@@ -82,9 +86,9 @@ def stone
 end
 
 def fenced
-  [on_green("---"),
-   on_green("|") + on_green(boar(3)) + on_green("|"),
-   on_green("---")]
+  [on_green(white("---")),
+   on_green(white("|") + boar(3) + white("|")),
+   on_green(white("---"))]
 end
 
 def ploughed
@@ -114,11 +118,12 @@ def boar(number)
 end
 
 def row(first, second)
-  first.zip(second).map &:join
+  # join each row of the tiles, and unescape
+  first.zip(second).map { |element| element.join + escape_to_default_colours }
 end
 
 def display(farm)
   farm.each {|row| puts row}
 end
 
-display row(fenced, empty)
+display row(fenced, clay)
