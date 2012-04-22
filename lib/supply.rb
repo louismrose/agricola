@@ -14,6 +14,10 @@ class Supply
     @inventory[resource_type] += amount
   end
   
+  def spend(amount, resource_type)
+    gather -amount, resource_type
+  end
+  
   def amount_of(resource_type)
     @inventory[resource_type]
   end
