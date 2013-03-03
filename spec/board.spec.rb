@@ -51,4 +51,18 @@ describe Board do
       subject.contents(0, 3).should == {grain: 3}
     end
   end
+  
+  context "after a stable has been placed" do
+    before(:each) do
+      subject.stable_at 0, 3
+    end
+    
+    it "should be a stable at the given location" do
+      subject.is_stable_at?(0, 3).should be_true
+    end
+    
+    it "should contain extra animal housing" do
+      subject.animal_housing.should == [{row: 0, column: 3, capacity: 1}]
+    end
+  end
 end

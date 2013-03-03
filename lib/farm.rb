@@ -17,4 +17,8 @@ class Farm
     @supply.spend 1, :grain
     @board.sow_at x, y
   end
+  
+  def stable_at x, y
+    @board.stable_at x, y
+  end
 end

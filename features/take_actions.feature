@@ -29,7 +29,15 @@ Feature: Take actions
    When  I sow grain into A1
    Then  the tile at location A1 should contain 3 grain
    And   my farm should have 0 grain
-  
+ 	
+	Scenario: Place a stable
+		Given an empty farm
+    When I place a stable at location A1
+    Then my farm should have the following animal housing:
+			| column | row | capacity |
+			| A      | 1   | 1        |
+    And  the tile at location A1 should be a stable
+	
   # Other actions
   # - Take sheep / cattle / boar / food
   # - "Swap a resource" e.g. pay 1 food for 1 cattle

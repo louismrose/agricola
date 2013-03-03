@@ -7,12 +7,30 @@ class Board
     tile_at(x,y)[:type] = :ploughed
   end
   
+  def stable_at x, y
+    tile_at(x,y)[:type] = :stabled
+  end
+  
   def is_ploughed_at? x, y
     tile_at(x,y)[:type] == :ploughed
   end
   
+  def is_stable_at? x, y
+    tile_at(x,y)[:type] == :stabled
+  end
+  
   def number_of_ploughed_fields
-    @tiles.values.select { |tile| tile[:type] == :ploughed}.count
+    tiles_with_type(:ploughed).count
+  end
+  
+  # Perhaps this and number_of_ploughed_fields belong on
+  # another class that queries the board
+  def animal_housing
+    result = []
+    tiles_with_type(:stabled).each do |position,tile|
+      result << {row: position[0], column: position[1], capacity: 1}
+    end
+    result
   end
   
   def sow_at x, y
@@ -24,6 +42,10 @@ class Board
   end
   
 private
+  def tiles_with_type type
+    @tiles.select { |position,tile| tile[:type] == type}
+  end
+
   def tile_at x, y
     @tiles[[x,y]] = @tiles[[x,y]] || {}
   end
