@@ -17,11 +17,11 @@ Given /^a farm with a ploughed field at location ([A-Z])(\d)$/ do |column, row|
 end
 
 Given /^my farm has (\d+) (#{resource_types_pattern})$/ do |amount, resource_type|
-  @farm.supply.gather amount.to_i, resource_type.to_sym
+  @farm.gather amount.to_i, resource_type.to_sym
 end
 
 When /^I pick up (\d+) (#{resource_types_pattern})$/ do |amount, resource_type|
-  @farm.supply.gather amount.to_i, resource_type.to_sym
+  @farm.gather amount.to_i, resource_type.to_sym
 end
 
 When /^I plough a field at location ([A-Z])(\d)$/ do |column, row|
@@ -62,4 +62,8 @@ end
 
 Then /^the tile at location ([A-Z])(\d+) should contain (\d+) (#{resource_types_pattern})$/ do |column, row, amount, resource_type|
   @farm.board.contents(row, column).should == {resource_type.to_sym => amount.to_i}
+end
+
+Then(/^my house should contain (\d+) sheep$/) do |expected|
+  @farm.house.animals[:sheep].should == expected.to_i
 end

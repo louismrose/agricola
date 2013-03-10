@@ -7,7 +7,7 @@ class Supply
   end
   
   def self.resource_types
-    [:wood, :clay, :stone, :reed, :grain, :vegetable]
+    [:wood, :clay, :stone, :reed, :grain, :vegetable, :sheep]
   end
   
   def gather(amount, resource_type)

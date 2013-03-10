@@ -1,12 +1,14 @@
 require 'supply'
 require 'board'
+require 'house'
 
 class Farm
-  attr_reader :supply, :board
+  attr_reader :supply, :board, :house
   
   def initialize
     @supply = Supply.new
     @board  = Board.new
+    @house = House.new
   end
   
   def plough_at x, y
@@ -20,5 +22,10 @@ class Farm
   
   def stable_at x, y
     @board.stable_at x, y
+  end
+  
+  def gather number, resource
+    @supply.gather number, resource
+    @house.stable number, resource if resource == :sheep
   end
 end

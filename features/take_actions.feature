@@ -38,6 +38,12 @@ Feature: Take actions
 			| A      | 1   | 1        |
     And  the tile at location A1 should be a stable
 	
+	Scenario: Take a sheep
+	  Given an empty farm
+	  When I pick up 1 sheep
+	  Then my farm should have 1 sheep
+	  And my house should contain 1 sheep
+	
   # Other actions
   # - Take sheep / cattle / boar / food
   # - "Swap a resource" e.g. pay 1 food for 1 cattle
@@ -45,7 +51,6 @@ Feature: Take actions
   # - Buy improvement (sometimes with a cost / pre-req )
   # - Play occupation (sometimes with a cost / pre-req)
   # - Place fences
-  # - Place a stable
   # - Renovate
   # - Build a room
   # - Family growth
