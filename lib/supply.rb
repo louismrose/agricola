@@ -1,3 +1,5 @@
+require "house"
+
 class Supply  
   def initialize
     @inventory = {}
@@ -7,7 +9,7 @@ class Supply
   end
   
   def self.resource_types
-    [:wood, :clay, :stone, :reed, :grain, :vegetable, :sheep]
+    [:wood, :clay, :stone, :reed, :grain, :vegetable] + House.animal_types
   end
   
   def gather(amount, resource_type)

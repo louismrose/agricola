@@ -1,8 +1,13 @@
 require "supply"
 require "farm"
+require "house"
 
 def resource_types_pattern
   Supply.resource_types.join('|')
+end
+
+def animal_types_pattern
+  House.animal_types.join('|')
 end
 
 Given /^an empty farm$/ do
@@ -64,6 +69,6 @@ Then /^the tile at location ([A-Z])(\d+) should contain (\d+) (#{resource_types_
   @farm.board.contents(row, column).should == {resource_type.to_sym => amount.to_i}
 end
 
-Then(/^my house should contain (\d+) sheep$/) do |expected|
-  @farm.house.animals[:sheep].should == expected.to_i
+Then(/^my house should contain (\d+) (#{animal_types_pattern})$/) do |amount, animal_type|
+  @farm.house.animals[animal_type.to_sym].should == amount.to_i
 end

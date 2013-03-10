@@ -38,11 +38,17 @@ Feature: Take actions
 			| A      | 1   | 1        |
     And  the tile at location A1 should be a stable
 	
-	Scenario: Take a sheep
+	Scenario Outline: Take an animal
 	  Given an empty farm
-	  When I pick up 1 sheep
-	  Then my farm should have 1 sheep
-	  And my house should contain 1 sheep
+	  When I pick up 1 <animal>
+	  Then my farm should have 1 <animal>
+	  And my house should contain 1 <animal>
+	  
+	  Scenarios:
+		 | animal |
+		 | sheep  |
+		 | boar   |
+		 | cattle |
 	
   # Other actions
   # - Take sheep / cattle / boar / food

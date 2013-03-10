@@ -26,6 +26,6 @@ class Farm
   
   def gather number, resource
     @supply.gather number, resource
-    @house.stable number, resource if resource == :sheep
+    @house.stable number, resource if House.animal_types.include? resource
   end
 end
