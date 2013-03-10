@@ -1,0 +1,1 @@
+[![Code Climate](https://codeclimate.com/github/louismrose/agricola.png)](https://codeclimate.com/github/louismrose/agricola)
