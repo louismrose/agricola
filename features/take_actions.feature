@@ -51,7 +51,8 @@ Feature: Take actions
 		 | cattle |
 	
   # Other actions
-  # - Take sheep / cattle / boar / food
+  # - On a farm with 1 stable, take 2 of an animal putting 1 in house and 1 in stable
+  # - Take food
   # - "Swap a resource" e.g. pay 1 food for 1 cattle
   # - Bake bread
   # - Buy improvement (sometimes with a cost / pre-req )
